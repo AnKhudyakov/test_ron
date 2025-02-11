@@ -8,6 +8,7 @@
     "start:localdev": "NODE_ENV=localdev npm run start",
     "start:dev": "NODE_ENV=development npm run start",
     "start:prod": "NODE_ENV=prod npm run start",
+    "build": "tsc && vite build",
     "build:localdev": "tsc && vite build",
     "build:dev": "vite build --mode development",
     "build:prod": "vite build --mode development",
