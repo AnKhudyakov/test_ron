@@ -4,7 +4,7 @@
     font-weight: $weight;
     font-style: normal;
     font-display: swap;
-    src: url('@/shared/ui/assets/fonts/#{$family}/#{$name}.ttf') format('ttf');
+    src: url('@/shared/assets/fonts/#{$family}/#{$name}.ttf') format('ttf');
   }
 }
 
