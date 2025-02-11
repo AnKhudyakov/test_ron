@@ -1,0 +1,54 @@
+@import '@/app/styles/mixins';
+
+.container {
+  @include flex-center;
+  gap: 9px;
+  width: fit-content;
+}
+
+.toggle {
+  @include flex-center;
+  background: none;
+  border: 1px solid rgb(255, 255, 255, 0.4);
+  border-radius: 8px;
+  padding: 0;
+  cursor: pointer;
+  width: 77px;
+  height: 29px;
+}
+
+.toggle:hover {
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  transition: 0.5s;
+}
+
+.deg {
+  @include flex-center;
+  font-size: 18px;
+  line-height: 21.6px;
+  height: 100%;
+}
+
+.part {
+  @include flex-center;
+  border-radius: 8px;
+  height: 100%;
+  flex: 1;
+}
+
+%part_active {
+  @include flex-center;
+  height: 100%;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.active_C {
+  @extend %part_active;
+  border-radius: 8px 0 0 8px;
+}
+
+.active_F {
+  @extend %part_active;
+  border-radius: 0 8px 8px 0;
+}

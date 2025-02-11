@@ -1,0 +1,39 @@
+// Colors
+
+$white: #fff;
+$dr-white: #fafafa;
+$black: #000000;
+$blue: #498cec;
+$blue-light: #1086ff;
+
+// Colors map
+$colors: (
+  white: $white,
+  dr-white: $dr-white,
+  black: $black,
+  blue: $blue,
+  blue-light: $blue-light,
+);
+
+// Breakpoints
+
+$breakpoints: (
+  mobile: 31.25rem,
+  tablet: 48rem,
+  laptop: 60rem,
+  desktop: 80rem,
+);
+
+// Sizes
+
+$nav-height: 52px;
+$motivation-header-height: 128px;
+
+// Fonts
+
+$lato: 'Lato', 'Lato-Regular', sans-serif;
+
+// Fonts map
+$fonts: (
+  lato: $lato,
+);

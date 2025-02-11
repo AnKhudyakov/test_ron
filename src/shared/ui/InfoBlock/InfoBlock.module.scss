@@ -1,0 +1,18 @@
+@import '@/app/styles/mixins';
+
+.info_block {
+  @include flex-column;
+  gap: 4px;
+  padding: 10px;
+}
+
+.label {
+  font-size: 18px !important;
+  line-height: 21.6px;
+  opacity: 0.6;
+}
+
+.value {
+  font-size: 25px !important;
+  line-height: 30px;
+}
