@@ -1,0 +1,12 @@
+@import '@/app/styles/mixins';
+@import '@/app/styles/vars';
+
+.containter {
+  @include flex-column;
+  gap: 5px;
+}
+
+.buttons {
+  @include flex-row;
+  gap: 25px;
+}

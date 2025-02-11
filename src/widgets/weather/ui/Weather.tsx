@@ -1,21 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useWeatherWithGeo } from 'shared/lib/hooks/useGeolocation';
 import { InfoBlock } from 'shared/ui/InfoBlock';
 import { Temperature } from 'shared/ui/Temperature';
 import { Typography } from 'shared/ui/Typography';
 import { WeatherIcon } from 'shared/ui/WeatherIcon';
-import styles from './Weather.module.scss';
 import { Loader } from 'shared/ui/Loader';
 import { getWindDirection } from '../lib/helpers';
 import { ToggleUnits } from 'features/toggleUnits';
+import { CitySelect } from 'features/select-city';
+import styles from './Weather.module.scss';
 
 export const Weather: React.FC<{}> = () => {
   const [unit, setUnit] = useState<'C' | 'F'>('C');
-  const { data, isLoading, error } = useWeatherWithGeo();
+  const { data, isLoading, error, setCity, geoCity } = useWeatherWithGeo();
+  const [cityState, setCityState] = useState<string>('');
 
   const handleToggle = () => {
     setUnit((prev: 'C' | 'F') => (prev === 'C' ? 'F' : 'C'));
   };
+  const handleCityChange = (newCity: string) => {
+    setCityState(newCity);
+    setCity(newCity);
+  };
+
+  const handleResetToGeo = () => {
+    if (!geoCity) return;
+    setCityState(geoCity);
+    setCity(geoCity);
+  };
+
+  useEffect(() => {
+    if (!isLoading && data) setCityState(data.name);
+  }, [data, isLoading]);
 
   if (isLoading || !data) return <Loader />;
   if (error)
@@ -24,7 +40,11 @@ export const Weather: React.FC<{}> = () => {
   return (
     <div className={styles.containter}>
       <div className={styles.block_header}>
-        <Typography variant="title">{data.name}</Typography>
+        <CitySelect
+          initCity={cityState}
+          onCityChange={handleCityChange}
+          onResetToGeo={handleResetToGeo}
+        />
         <ToggleUnits unit={unit} onToggle={handleToggle} />
       </div>
       <div className={styles.block_center}>

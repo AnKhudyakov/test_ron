@@ -1,0 +1,12 @@
+@import '@/app/styles/mixins';
+@import '@/app/styles/vars';
+
+.input {
+  @include flex-center;
+  width: 100%;
+  background: var(--color-grey);
+  border: none;
+  border-radius: 8px;
+  font-size: 30px;
+  line-height: 36px;
+}

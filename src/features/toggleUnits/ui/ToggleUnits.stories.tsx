@@ -2,7 +2,7 @@ import { ToggleUnits } from './ToggleUnits';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof ToggleUnits> = {
-  title: 'Shared/ToggleUnits',
+  title: 'features/ToggleUnits',
   component: ToggleUnits,
 };
 

@@ -3,6 +3,7 @@ import { useCity, usePop, useWeather } from 'shared/api/api';
 
 export const useWeatherWithGeo = () => {
   const [city, setCity] = useState<string | null>(null);
+  const [geoCity, setGeoCity] = useState<string | null>(null);
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
   const [geoError, setGeoError] = useState<string | null>(null);
@@ -43,6 +44,7 @@ export const useWeatherWithGeo = () => {
   useEffect(() => {
     if (geoData && geoData.length > 0) {
       setCity(geoData[0].name);
+      setGeoCity(geoData[0].name);
     } else if (cityError) {
       setGeoError('Не удалось определить город');
     }
@@ -52,5 +54,7 @@ export const useWeatherWithGeo = () => {
     data: popData ? { ...data, pop: popData?.list?.[0].pop } : data,
     isLoading: isGeoLoading || isLoading || isPopLoading,
     error: geoError || cityError || error,
+    setCity,
+    geoCity
   };
 };
