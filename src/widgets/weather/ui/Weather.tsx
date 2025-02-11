@@ -10,6 +10,7 @@ import { ToggleUnits } from 'features/toggleUnits';
 import { CitySelect } from 'features/select-city';
 import styles from './Weather.module.scss';
 import { capitalizeFirstLetter } from 'shared/lib/helpers/helpers';
+import { Error } from 'shared/ui/Error';
 
 export const Weather: React.FC<{}> = () => {
   const [unit, setUnit] = useState<'C' | 'F'>('C');
@@ -34,9 +35,14 @@ export const Weather: React.FC<{}> = () => {
     if (!isLoading && data) setCityState(data.name);
   }, [data, isLoading]);
 
-  if (isLoading || !data) return <Loader />;
-  if (error)
-    return <Typography variant="body">Ошибка загрузки данных</Typography>;
+  if (error || !data)
+    return (
+      <Error
+        message="Такого города пока не существует"
+        onError={handleResetToGeo}
+      />
+    );
+  if (isLoading) return <Loader />;
 
   return (
     <div className={styles.containter}>
