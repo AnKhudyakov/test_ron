@@ -2,6 +2,8 @@
 
 .container {
   @include flex-center;
+  align-items: flex-start;
+  padding-top: 6px;
   gap: 9px;
   width: fit-content;
 }
@@ -23,6 +25,7 @@
 
 .deg {
   @include flex-center;
+  align-items: flex-start;
   font-size: 18px;
   line-height: 21.6px;
   height: 100%;

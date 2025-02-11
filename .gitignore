@@ -24,3 +24,4 @@ tsBuildInfoFile
 *.njsproj
 *.sln
 *.sw?
+*.local

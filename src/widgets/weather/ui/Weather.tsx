@@ -9,6 +9,7 @@ import { getWindDirection } from '../lib/helpers';
 import { ToggleUnits } from 'features/toggleUnits';
 import { CitySelect } from 'features/select-city';
 import styles from './Weather.module.scss';
+import { capitalizeFirstLetter } from 'shared/lib/helpers/helpers';
 
 export const Weather: React.FC<{}> = () => {
   const [unit, setUnit] = useState<'C' | 'F'>('C');
@@ -48,8 +49,13 @@ export const Weather: React.FC<{}> = () => {
         <ToggleUnits unit={unit} onToggle={handleToggle} />
       </div>
       <div className={styles.block_center}>
-        <WeatherIcon iconCode={data.weather[0].icon} />
-        <Temperature value={data.main.temp} unit={unit} />
+        <div className={styles.main_info}>
+          <WeatherIcon iconCode={data.weather[0].icon} />
+          <Temperature value={data.main.temp} unit={unit} />
+        </div>
+        <Typography variant="subtitle">
+          {capitalizeFirstLetter(data.weather[0].description)}
+        </Typography>
       </div>
       <div className={styles.block_footer}>
         <InfoBlock

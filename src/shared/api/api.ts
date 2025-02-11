@@ -2,8 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { config } from 'shared/config';
 
 const fetchWeather = async (city: string | null) => {
+  const userLang = navigator.language.split('-')[0];
   const response = await fetch(
-    `${config.backendUrl}data/2.5/weather?q=${city}&units=metric&appid=${config.apiKey}`
+    `${config.backendUrl}data/2.5/weather?q=${city}&units=metric&lang=${userLang}&appid=${config.apiKey}`
   );
   if (!response.ok) throw new Error('Ошибка загрузки данных');
   return response.json();
