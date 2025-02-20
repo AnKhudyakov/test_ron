@@ -1,6 +1,6 @@
 import { AppLayout } from 'app/providers/layout';
 import {
-  createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
@@ -19,7 +19,7 @@ export const AppRouter = () => {
     </Route>
   );
 
-  const router = createBrowserRouter(routes, {});
+  const router = createHashRouter(routes, {});
 
   return <RouterProvider router={router} />;
 };
