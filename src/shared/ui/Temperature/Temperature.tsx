@@ -2,10 +2,13 @@ import { FC } from 'react';
 
 import styles from './Temperature.module.scss';
 import { IProps } from './Temperature.types';
+import { convertTemp } from 'shared/lib/helpers';
+import clsx from 'clsx';
 
-export const Temperature: FC<IProps> = ({ value, unit }) => {
-  const convertTemp = (temp: number) => {
-    return unit === 'C' ? temp.toFixed() : ((temp * 9) / 5 + 32).toFixed();
-  };
-  return <div className={styles.temperature}>{convertTemp(value)}°</div>;
+export const Temperature: FC<IProps> = ({ value, unit, className }) => {
+  return (
+    <div className={clsx(styles.temperature, className)}>
+      {convertTemp(unit, value)}°
+    </div>
+  );
 };

@@ -8,7 +8,7 @@ export const CitySelectForm: React.FC<IProps> = ({ onSubmit, onCancel }) => {
   const [city, setCity] = useState('');
 
   return (
-    <div className={styles.containter}>
+    <div className={styles.container}>
       <Input
         value={city}
         onChange={(e) => setCity(e.target.value)}

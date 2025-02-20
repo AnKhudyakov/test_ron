@@ -1,12 +1,18 @@
 @import '@/app/styles/mixins';
 @import '@/app/styles/vars';
 
-.containter {
+.container {
   @include flex-column;
+  align-items: flex-start;
   gap: 5px;
 }
 
 .buttons {
   @include flex-row;
   gap: 30px;
+}
+
+.active {
+  opacity: 1;
+  font-weight: bold;
 }

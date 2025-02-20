@@ -12,23 +12,17 @@
   }
 }
 
-.containter {
+.container {
   @include flex-column;
   justify-content: space-between;
-  height: 100vh;
-  padding: 75px 75px 122px 100px;
+  height: 100%;
   background: $blue;
   animation: fadeIn 0.5s ease-in-out;
 }
 
-.block_header {
-  @include flex-row;
-  justify-content: space-between;
-}
-
 .block_center {
-  @include flex-column;
-  align-items: center;
+  @include flex-center;
+  height: 100%;
   gap: 10px;
 }
 

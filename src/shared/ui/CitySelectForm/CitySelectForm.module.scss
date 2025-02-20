@@ -1,7 +1,7 @@
 @import '@/app/styles/mixins';
 @import '@/app/styles/vars';
 
-.containter {
+.container {
   @include flex-row;
   background: $dr-white;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
@@ -11,7 +11,7 @@
 }
 
 .submit {
-  color: $blue-light ;
+  color: $blue-light;
   opacity: 1;
   font-size: 30px;
   line-height: 36px;

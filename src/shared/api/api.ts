@@ -29,6 +29,35 @@ const fetchPop = async (city: string | null) => {
   return response.json();
 };
 
+export const fetchForecastData = async (city: string | null) => {
+  const response = await fetch(
+    `${config.backendUrl}data/2.5/forecast?q=${city}&units=metric&lang=ru&appid=${config.apiKey}`
+  );
+
+  if (!response.ok) throw new Error('Ошибка загрузки прогноза');
+
+  const data = await response.json();
+
+  return {
+    city: data.city.name,
+    list: data.list
+      .filter((item: any) => item.dt_txt.includes('12:00:00'))
+      .map((item: any) => ({
+        date: new Date(item.dt * 1000).toLocaleDateString('ru-RU', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+        }),
+        temp: item.main.temp,
+        humidity: item.main.humidity,
+        pressure: item.main.pressure,
+        windSpeed: item.wind.speed,
+        windDeg: item.wind.deg,
+        weather: item.weather,
+      })),
+  };
+};
+
 export const useWeather = (city: string | null) => {
   return useQuery({
     queryKey: ['weather', city],
@@ -52,6 +81,15 @@ export const usePop = (city: string | null) => {
     queryKey: ['pop', city],
     queryFn: () => fetchPop(city),
     enabled: city !== null,
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
+export const useForecast = (city: string | null) => {
+  return useQuery({
+    queryKey: ['forecast', city],
+    queryFn: () => fetchForecastData(city),
+    enabled: !!city && city !== null,
     staleTime: 5 * 60 * 1000,
   });
 };
