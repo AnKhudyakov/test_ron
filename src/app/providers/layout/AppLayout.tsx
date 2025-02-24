@@ -57,7 +57,12 @@ export const AppLayout: FC<IProps> = () => {
             onCityChange={handleCityChange}
             onResetToGeo={handleResetToGeo}
           />
-          <ToggleUnits unit={unit} onToggle={handleToggle} />
+          <ToggleUnits
+            unit={unit}
+            onToggle={handleToggle}
+            firstValue="C"
+            secondValue="F"
+          />
         </div>
       </header>
       <div className={styles.layoutBody}>

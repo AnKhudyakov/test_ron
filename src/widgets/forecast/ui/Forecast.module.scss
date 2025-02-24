@@ -13,12 +13,18 @@
 }
 
 .container {
-  @include flex-row;
+  @include flex-column;
   justify-content: space-between;
+  padding-top: 20px;
   height: 100%;
   background: $blue;
   animation: fadeIn 0.5s ease-in-out;
   gap: 10px;
+}
+
+.options {
+  @include flex-row;
+  gap: 20px;
 }
 
 .forecastList {
@@ -43,4 +49,24 @@
 .temp {
   font-size: 100px;
   line-height: 120px;
+}
+
+.select {
+  max-width: 360px;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid rgb(255, 255, 255, 0.4);
+  border-radius: 8px;
+  background-color: transparent;
+  color: $dr-white;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  appearance: none;
+
+  &:hover {
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+    transition: 0.5s;
+  }
 }

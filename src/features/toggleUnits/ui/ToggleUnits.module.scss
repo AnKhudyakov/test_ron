@@ -56,3 +56,13 @@
   @extend %part_active;
   border-radius: 0 8px 8px 0;
 }
+
+.active_3h {
+  @extend %part_active;
+  border-radius: 8px 0 0 8px;
+}
+
+.active_day {
+  @extend %part_active;
+  border-radius: 8px 0 0 8px;
+}
