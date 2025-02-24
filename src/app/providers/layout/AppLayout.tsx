@@ -1,12 +1,18 @@
 import { Outlet } from 'react-router-dom';
 
-import styles from './AppLayout.module.scss';
 import { CitySelect } from 'features/select-city';
 import { ToggleUnits } from 'features/toggleUnits';
 import { FC } from 'react';
 import { useWeatherContext } from 'shared/context/WeatherContext';
-import { Loader } from 'shared/ui/Loader';
 import { Error } from 'shared/ui/Error';
+import { Loader } from 'shared/ui/Loader';
+import {
+  Header,
+  Layout,
+  LayoutBody,
+  LayoutHeader,
+  LayoutMain,
+} from './AppLayout.styles';
 
 interface IProps {}
 
@@ -49,9 +55,9 @@ export const AppLayout: FC<IProps> = () => {
   if (isLoading || !data) return <Loader />;
 
   return (
-    <div className={styles.layout}>
-      <header>
-        <div className={styles.layoutHeader}>
+    <Layout>
+      <Header>
+        <LayoutHeader>
           <CitySelect
             initCity={cityState}
             onCityChange={handleCityChange}
@@ -63,13 +69,13 @@ export const AppLayout: FC<IProps> = () => {
             firstValue="C"
             secondValue="F"
           />
-        </div>
-      </header>
-      <div className={styles.layoutBody}>
-        <main className={styles.layoutMain}>
+        </LayoutHeader>
+      </Header>
+      <LayoutBody>
+        <LayoutMain>
           <Outlet />
-        </main>
-      </div>
-    </div>
+        </LayoutMain>
+      </LayoutBody>
+    </Layout>
   );
 };

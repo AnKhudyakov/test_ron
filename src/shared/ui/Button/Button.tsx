@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import styles from './Button.module.scss';
 import { IProps } from './Button.types';
 import clsx from 'clsx';
+import { StyledButton } from './Button.styles';
 
 export const Button: FC<IProps> = ({
   onClick,
@@ -12,12 +12,12 @@ export const Button: FC<IProps> = ({
   className,
 }) => {
   return (
-    <button
+    <StyledButton
       onClick={onClick}
       disabled={disabled}
-      className={clsx(styles.button, className)}
+      className={clsx(className)}
     >
-      {icon && <span className={styles.icon}>{icon}</span>} {children}
-    </button>
+      {icon && <span className="icon">{icon}</span>} {children}
+    </StyledButton>
   );
 };

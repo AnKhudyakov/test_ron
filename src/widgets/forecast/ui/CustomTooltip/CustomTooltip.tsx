@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useWeatherContext } from 'shared/context/WeatherContext';
 import { Typography } from 'shared/ui/Typography';
-import styles from './CustomTooltip.module.scss';
+import { TooltipContainer } from './CustomTooltip.styles';
 
 export const CustomTooltip: FC<any> = ({ active, payload }) => {
   const { unit } = useWeatherContext();
@@ -10,7 +10,7 @@ export const CustomTooltip: FC<any> = ({ active, payload }) => {
   const data = payload[0].payload;
 
   return (
-    <div className={styles.tooltip}>
+    <TooltipContainer>
       <Typography>
         <strong>Температура:</strong> {data.temp}
         {unit}
@@ -24,6 +24,6 @@ export const CustomTooltip: FC<any> = ({ active, payload }) => {
       <Typography>
         <strong>Давление:</strong> {data.pressure} мм рт. ст.
       </Typography>
-    </div>
+    </TooltipContainer>
   );
 };

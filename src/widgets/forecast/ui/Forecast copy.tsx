@@ -1,3 +1,4 @@
+import { ToggleUnits } from 'features/toggleUnits';
 import { FC, useEffect, useState } from 'react';
 import {
   Area,
@@ -11,14 +12,11 @@ import {
 import { useForecast } from 'shared/api/api';
 import { useWeatherContext } from 'shared/context/WeatherContext';
 import { convertTemp } from 'shared/lib/helpers';
-import { ToggleUnits } from 'features/toggleUnits';
 import { Error } from 'shared/ui/Error';
 import { Loader } from 'shared/ui/Loader';
 import { Select } from 'shared/ui/Select';
-import { CustomTooltip } from './CustomTooltip/CustomTooltip';
-
-import { ForcastData } from './Forecast.types';
 import { Container, Options } from './Forecast.styles';
+import { ForcastData } from './Forecast.types';
 
 const METRICS = {
   temp: 'Температура (°C / F)',
@@ -34,22 +32,21 @@ export const Forecast: FC = () => {
 
   const { unit, data, setCityState, geoCity, cityState, setCity } =
     useWeatherContext();
-
   const {
     data: forecastData,
     isLoading,
     error,
   } = useForecast(cityState || geoCity);
 
+  useEffect(() => {
+    if (!isLoading && data) setCityState(data.name);
+  }, [data, isLoading]);
+
   const handleResetToGeo = () => {
     if (!geoCity) return;
     setCityState(geoCity);
     setCity(geoCity);
   };
-
-  useEffect(() => {
-    if (!isLoading && data) setCityState(data.name);
-  }, [data, isLoading]);
 
   if ((error || !forecastData) && !isLoading) {
     return (
@@ -68,7 +65,7 @@ export const Forecast: FC = () => {
       );
     }
     return forecastData?.list.filter(
-      (item: ForcastData, index: number) => index < 29
+      (_: ForcastData, index: number) => index < 29
     );
   };
 
@@ -121,32 +118,15 @@ export const Forecast: FC = () => {
           <XAxis
             dataKey={granularity === '3h' ? 'dt_txt' : 'date'}
             stroke="#666"
-            tick={({ x, y, payload }) => {
-              const value = payload.value.split(
-                granularity === '3h' ? ' ' : ', '
-              );
-              const [first, second] = value;
-              return (
-                <text x={x} y={y} textAnchor="middle" fontSize={12} fill="#666">
-                  <tspan x={x} dy="10">
-                    {second.slice(0, 5)}
-                  </tspan>
-                  <tspan x={x} dy="15">
-                    {granularity === '3h' && second == '12:00:00' ? first : ''}
-                  </tspan>
-                </text>
-              );
-            }}
             interval={0}
           />
           <YAxis
             domain={[minValue, maxValue]}
             tickCount={maxValue - minValue + 1}
             stroke="#666"
-            tick={{ fontSize: 14 }}
             allowDecimals={false}
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip />
           <Area
             type="monotone"
             dataKey={selectedMetric}

@@ -1,14 +1,17 @@
 import { FC } from 'react';
 
-import styles from './InfoBlock.module.scss';
+import { InfoBlockContainer, Label, Value } from './InfoBlock.styles';
 import { IProps } from './InfoBlock.types';
-import { Typography } from '../Typography';
 
 export const InfoBlock: FC<IProps> = ({ label, value }) => {
   return (
-    <div className={styles.info_block}>
-      <Typography className={styles.label}>{label}</Typography>
-      <Typography className={styles.value}>{value}</Typography>
-    </div>
+    <InfoBlockContainer>
+      <Label variant="body" className="label">
+        {label}
+      </Label>
+      <Value variant="body" className="value">
+        {value}
+      </Value>
+    </InfoBlockContainer>
   );
 };

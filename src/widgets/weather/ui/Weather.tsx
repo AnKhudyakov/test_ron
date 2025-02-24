@@ -5,27 +5,32 @@ import { InfoBlock } from 'shared/ui/InfoBlock';
 import { Temperature } from 'shared/ui/Temperature';
 import { Typography } from 'shared/ui/Typography';
 import { WeatherIcon } from 'shared/ui/WeatherIcon';
-import styles from './Weather.module.scss';
+import {
+  BlockCenter,
+  BlockFooter,
+  Container,
+  MainInfo,
+} from './Weather.styles';
 
-export const Weather: FC<{}> = () => {
-  const { unit, data, isLoading, error, setCityState } = useWeatherContext();
+export const Weather: FC = () => {
+  const { unit, data, isLoading, setCityState } = useWeatherContext();
 
   useEffect(() => {
     if (!isLoading && data) setCityState(data.name);
   }, [data, isLoading]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.block_center}>
-        <div className={styles.main_info}>
+    <Container>
+      <BlockCenter>
+        <MainInfo>
           <WeatherIcon iconCode={data.weather[0].icon} />
           <Temperature value={data.main.temp} unit={unit} />
-        </div>
+        </MainInfo>
         <Typography variant="subtitle">
           {capitalizeFirstLetter(data.weather[0].description)}
         </Typography>
-      </div>
-      <div className={styles.block_footer}>
+      </BlockCenter>
+      <BlockFooter>
         <InfoBlock
           label="Скорость ветра"
           value={`${data.wind.speed} м/с, ${getWindDirection(data.wind.deg)}`}
@@ -36,7 +41,7 @@ export const Weather: FC<{}> = () => {
         />
         <InfoBlock label="Влажность" value={`${data.main.humidity}%`} />
         <InfoBlock label="Вероятность дождя" value={`${data.pop}%`} />
-      </div>
-    </div>
+      </BlockFooter>
+    </Container>
   );
 };

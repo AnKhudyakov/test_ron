@@ -7,6 +7,7 @@ import checker from 'vite-plugin-checker';
 import mkcert from 'vite-plugin-mkcert';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import path from 'path';
+import tailwindcss from 'tailwindcss';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
@@ -16,16 +17,16 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tsconfigPaths(),
-      mkcert(),
+      //mkcert(),
       checker({ typescript: true }),
     ],
     server: {
       open: true,
-      https: true,
+      //https: true,
     },
     css: {
       postcss: {
-        plugins: [autoprefixer],
+        plugins: [tailwindcss(), autoprefixer],
       },
     },
     resolve: {

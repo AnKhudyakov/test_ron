@@ -40,22 +40,20 @@ export const fetchForecastData = async (city: string | null) => {
 
   return {
     city: data.city.name,
-    list: data.list
-      //.filter((item: any) => item.dt_txt.includes('12:00:00'))
-      .map((item: any) => ({
-        dt_txt: item.dt_txt,
-        date: new Date(item.dt * 1000).toLocaleDateString('ru-RU', {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-        }),
-        temp: item.main.temp,
-        humidity: item.main.humidity,
-        pressure: item.main.pressure,
-        windSpeed: item.wind.speed,
-        windDeg: item.wind.deg,
-        weather: item.weather,
-      })),
+    list: data.list.map((item: any) => ({
+      dt_txt: item.dt_txt,
+      date: new Date(item.dt * 1000).toLocaleDateString('ru-RU', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+      }),
+      temp: item.main.temp,
+      humidity: item.main.humidity,
+      pressure: item.main.pressure,
+      windSpeed: item.wind.speed,
+      windDeg: item.wind.deg,
+      weather: item.weather,
+    })),
   };
 };
 

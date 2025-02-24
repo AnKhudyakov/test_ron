@@ -1,18 +1,23 @@
 import { FC } from 'react';
 
-import styles from './ToggleUnits.module.scss';
+import { Container, Part, ToggleButton } from './ToggleUnits.styles';
 import { IProps } from './ToggleUnits.types';
 
-export const ToggleUnits: FC<IProps> = ({ unit, onToggle, firstValue, secondValue }) => {
-  const getClassPart = (u: string) => (u === unit ? `active_${u}` : 'part');
+export const ToggleUnits: FC<IProps> = ({
+  unit,
+  onToggle,
+  firstValue,
+  secondValue,
+}) => {
+  const isActiveFirst = firstValue === unit;
+  const isActiveSecond = secondValue === unit;
 
   return (
-    <div className={styles.container}>
-      {/* <div className={styles.deg}>{`°`}</div> */}
-      <button className={styles.toggle} onClick={onToggle}>
-        <div className={styles[getClassPart(firstValue)]}>{firstValue}</div>
-        <div className={styles[getClassPart(secondValue)]}>{secondValue}</div>
-      </button>
-    </div>
+    <Container>
+      <ToggleButton onClick={onToggle}>
+        <Part isActive={isActiveFirst}>{firstValue}</Part>
+        <Part isActive={isActiveSecond}>{secondValue}</Part>
+      </ToggleButton>
+    </Container>
   );
 };

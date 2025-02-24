@@ -1,4 +1,4 @@
 import { AppProvider } from './providers';
-import './styles/index.scss';
+import './styles/index.css';
 
 export const App = () => <AppProvider />;
