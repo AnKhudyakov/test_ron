@@ -129,7 +129,7 @@ export const Forecast: FC = () => {
               return (
                 <text x={x} y={y} textAnchor="middle" fontSize={12} fill="#666">
                   <tspan x={x} dy="10">
-                    {second.slice(0, 5)}
+                    {granularity === '3h' ? second.slice(0, 5) : second}
                   </tspan>
                   <tspan x={x} dy="15">
                     {granularity === '3h' && second == '12:00:00' ? first : ''}

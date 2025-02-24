@@ -17,7 +17,7 @@ export const GlobalStyles = createGlobalStyle`
 
   :root {
     --color-white: #ffffff;
-    --color-blue: #007bff;
+    --color-blue: #498cec;
     --font-lato: "Lato", sans-serif;
     font-size: 16px;
   }
